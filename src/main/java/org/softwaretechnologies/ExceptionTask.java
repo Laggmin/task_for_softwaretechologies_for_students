@@ -6,11 +6,16 @@ public class ExceptionTask {
     /**
      * Исправьте функцию printMessage не убирая вызов функции throwRuntimeException.
      * Функция printMessage должна выводить на экран сообщение:
-       Вызвана функция printMessage
+     Вызвана функция printMessage
      */
     public static void printMessage() {
-        throwRuntimeException();
+        //throwRuntimeException();
         // TODO: реализуйте вышеуказанную функцию
+        try {
+            throwRuntimeException();
+        }catch (Exception s){
+            System.out.println("Вызвана функция printMessage");
+        }
 
     }
 
@@ -20,8 +25,13 @@ public class ExceptionTask {
      Вызвана функция printMessage2
      */
     public static void printMessage2() throws Exception {
-        throwCatchableException();
+        //throwCatchableException();
         // TODO: реализуйте вышеуказанную функцию
+        try {
+            throwCatchableException();
+        }catch (Exception e){
+            System.out.println("Вызвана функция printMessage2");
+        }
     }
 
     private static void throwCatchableException() throws Exception {
@@ -40,6 +50,9 @@ public class ExceptionTask {
      * @throws DivideOnNullException если divisor равен 0
      */
     public static int divide(int dividend, int divisor) throws DivideOnNullException {
+        if (divisor == 0){
+            throw new DivideOnNullException();
+        }
 
         // TODO: реализуйте вышеуказанную функцию
         return dividend/divisor;
@@ -56,8 +69,13 @@ public class ExceptionTask {
      */
     public static Optional<String> mergeStrings(String first, String second) {
         // TODO: реализуйте вышеуказанную функцию
-
-
+        if(first==null&&second==null){
+            return Optional.empty();
+        }else if(first==null) {
+            return Optional.of(second);
+        }else if(second==null){
+            return Optional.of(first);
+        }
 
         return Optional.of(first.length() > second.length() ? first + second : second + first);
     }
